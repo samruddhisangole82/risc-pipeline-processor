@@ -218,3 +218,129 @@ Branches and jumps can change the program counter.
 
 When a branch or jump is taken, incorrectly fetched instructions are flushed from the pipeline.
 
+
+
+\## Simulation Results
+
+
+
+The processor was verified using AMD Vivado XSim behavioral simulation.
+
+
+
+\### Final Register Values
+
+
+
+R1  = 5
+
+R2  = 10
+
+R3  = 15
+
+R4  = 20
+
+R5  = 20
+
+R6  = 25
+
+R7  = 30
+
+R8  = 255
+
+R10 = 42
+
+R12 = 99
+
+
+
+\### Memory Result
+
+
+
+MEM\[0] = 20
+
+
+
+\### Pipeline Verification
+
+
+
+The simulation successfully demonstrated:
+
+
+
+\- Five-stage instruction pipeline
+
+\- Data forwarding
+
+\- Load-use hazard detection
+
+\- Pipeline stall
+
+\- Branch handling
+
+\- Branch pipeline flushing
+
+\- Jump handling
+
+\- Jump pipeline flushing
+
+\- Register write-back
+
+\- Memory read and write operations
+
+
+
+\### Verification Output
+
+
+
+PASS: R1 = 5
+
+PASS: R2 = 10
+
+PASS: R3 = 15
+
+PASS: R4 = 20
+
+PASS: R5 = 20
+
+PASS: R6 = 25
+
+PASS: R7 = 30
+
+PASS: R8 = 255
+
+PASS: R9 = 0
+
+PASS: R10 = 42
+
+PASS: R11 = 0
+
+PASS: R12 = 99
+
+PASS: MEM\[0] = 20
+
+
+
+\### Pipeline Events
+
+
+
+FORWARD A = 10
+
+FORWARD B = 01
+
+
+
+LOAD-USE HAZARD: PIPELINE STALL
+
+
+
+BRANCH TAKEN - FLUSHING PIPELINE
+
+
+
+JUMP TAKEN - FLUSHING PIPELINE
+
