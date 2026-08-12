@@ -6,7 +6,7 @@ A 32-bit, five-stage RISC pipelined processor implemented in Verilog HDL and ver
 
 
 
-The processor implements a classic five-stage pipeline:
+The processor follows the classic five-stage pipeline:
 
 
 
@@ -14,7 +14,7 @@ The processor implements a classic five-stage pipeline:
 
 
 
-The project demonstrates RTL design, pipelining, data forwarding, hazard detection, pipeline stalls, branch handling, jump handling, register operations, and memory operations.
+This project demonstrates RTL design, pipelining, data forwarding, hazard detection, pipeline stalls, branch handling, jump handling, register operations, and memory operations.
 
 
 
@@ -26,19 +26,19 @@ The project demonstrates RTL design, pipelining, data forwarding, hazard detecti
 
 
 
-This project implements a 32-bit RISC processor using a five-stage instruction pipeline.
+The processor consists of five pipeline stages:
 
 
 
-| Stage | Name | Function |
+| Stage | Name | Description |
 
 |---|---|---|
 
 | IF | Instruction Fetch | Fetches instructions from instruction memory |
 
-| ID | Instruction Decode | Decodes instructions and reads source registers |
+| ID | Instruction Decode | Decodes instructions and reads registers |
 
-| EX | Execute | Performs ALU operations and calculates addresses |
+| EX | Execute | Performs ALU operations and address calculations |
 
 | MEM | Memory Access | Performs data memory read/write operations |
 
@@ -46,115 +46,27 @@ This project implements a 32-bit RISC processor using a five-stage instruction p
 
 
 
+Pipeline registers are used between stages so that multiple instructions can be processed simultaneously.
+
+
+
 \---
 
 
 
-\## Processor Architecture
+\## Key Features
+
+
+
+\### 1. Five-Stage Pipeline
+
+
+
+The processor implements:
 
 
 
 ```text
 
-&#x20;            Instruction Memory
-
-&#x20;                   |
-
-&#x20;                   v
-
-&#x20;             +-----------+
-
-&#x20;             |    IF     |
-
-&#x20;             |   Fetch   |
-
-&#x20;             +-----+-----+
-
-&#x20;                   |
-
-&#x20;             +-----v-----+
-
-&#x20;             |  IF / ID  |
-
-&#x20;             |  Register |
-
-&#x20;             +-----+-----+
-
-&#x20;                   |
-
-&#x20;                   v
-
-&#x20;             +-----------+
-
-&#x20;             |    ID     |
-
-&#x20;             |  Decode   |
-
-&#x20;             +-----+-----+
-
-&#x20;                   |
-
-&#x20;             +-----v-----+
-
-&#x20;             |  ID / EX  |
-
-&#x20;             |  Register |
-
-&#x20;             +-----+-----+
-
-&#x20;                   |
-
-&#x20;                   v
-
-&#x20;             +-----------+
-
-&#x20;             |    EX     |
-
-&#x20;             |    ALU    |
-
-&#x20;             +-----+-----+
-
-&#x20;                   |
-
-&#x20;             +-----v-----+
-
-&#x20;             | EX / MEM  |
-
-&#x20;             |  Register |
-
-&#x20;             +-----+-----+
-
-&#x20;                   |
-
-&#x20;                   v
-
-&#x20;             +-----------+
-
-&#x20;             |    MEM    |
-
-&#x20;             |   Memory  |
-
-&#x20;             +-----+-----+
-
-&#x20;                   |
-
-&#x20;             +-----v-----+
-
-&#x20;             | MEM / WB  |
-
-&#x20;             |  Register |
-
-&#x20;             +-----+-----+
-
-&#x20;                   |
-
-&#x20;                   v
-
-&#x20;             +-----------+
-
-&#x20;             |    WB     |
-
-&#x20;             | Write Back|
-
-&#x20;             +-----------+
+IF → ID → EX → MEM → WB
 
