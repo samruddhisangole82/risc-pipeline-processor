@@ -6,7 +6,7 @@ A 32-bit, five-stage RISC pipelined processor implemented in Verilog HDL and ver
 
 
 
-The processor follows the classic five-stage pipeline:
+The processor implements the classic five-stage pipeline:
 
 
 
@@ -14,7 +14,7 @@ The processor follows the classic five-stage pipeline:
 
 
 
-This project demonstrates RTL design, pipelining, data forwarding, hazard detection, pipeline stalls, branch handling, jump handling, register operations, and memory operations.
+The project demonstrates RTL design, pipelining, data forwarding, hazard detection, pipeline stalls, branch handling, jump handling, register operations, and memory operations.
 
 
 
@@ -36,17 +36,17 @@ The processor consists of five pipeline stages:
 
 | IF | Instruction Fetch | Fetches instructions from instruction memory |
 
-| ID | Instruction Decode | Decodes instructions and reads registers |
+| ID | Instruction Decode | Decodes instructions and reads source registers |
 
 | EX | Execute | Performs ALU operations and address calculations |
 
-| MEM | Memory Access | Performs data memory read/write operations |
+| MEM | Memory Access | Performs data memory read and write operations |
 
 | WB | Write Back | Writes results back to the register file |
 
 
 
-Pipeline registers are used between stages so that multiple instructions can be processed simultaneously.
+Pipeline registers are placed between the stages to allow multiple instructions to be processed at the same time.
 
 
 
@@ -58,15 +58,51 @@ Pipeline registers are used between stages so that multiple instructions can be 
 
 
 
-\### 1. Five-Stage Pipeline
+\### Five-Stage Pipeline
 
 
 
-The processor implements:
+The processor uses the following pipeline:
+
+
+
+\*\*IF → ID → EX → MEM → WB\*\*
+
+
+
+The pipeline registers are:
+
+
+
+\- IF/ID
+
+\- ID/EX
+
+\- EX/MEM
+
+\- MEM/WB
+
+
+
+\### Data Forwarding
+
+
+
+A dedicated forwarding unit handles data dependencies between instructions.
+
+
+
+Instead of waiting for an instruction to complete the write-back stage, the required result can be forwarded directly to the Execute stage.
+
+
+
+For example:
 
 
 
 ```text
 
-IF → ID → EX → MEM → WB
+ADD R3, R1, R2
+
+ADD R4, R3, R5
 
