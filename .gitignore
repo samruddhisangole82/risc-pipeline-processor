@@ -1,0 +1,33 @@
+# Vivado generated files
+*.jou
+*.log
+*.str
+
+# Vivado generated directories
+*.cache/
+*.hw/
+*.ip_user_files/
+*.sim/
+
+# Generated implementation/synthesis files
+*.runs/
+*.gen/
+
+# Generated reports and databases
+*.dcp
+*.rpt
+*.pb
+
+# Generated FPGA files
+*.bit
+*.bin
+*.ltx
+*.mcs
+*.mmi
+
+# Simulation waveform files
+*.wdb
+
+# OS files
+Thumbs.db
+.DS_Store
